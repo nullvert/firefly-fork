@@ -47,6 +47,7 @@ export type MusicPlayerConfig = {
 			url: string; // 音乐文件路径（相对于 public 目录）
 			cover?: string; // 封面图片路径（相对于 public 目录）
 			lrc?: string; // 歌词内容，支持 LRC 格式
+			duration?: number | string; // 歌曲时长（秒数或 "mm:ss" 字符串，可选）
 		}>;
 	};
 };

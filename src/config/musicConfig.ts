@@ -53,6 +53,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				url: "/assets/music/url/get-jinxed.opus",
 				cover: "/assets/music/cover/get-jinxed.webp",
 				lrc: "/assets/music/lrc/get-jinxed.lrc",
+				duration: "2:34",
 			},
 			{
 				name: "Vienna",
@@ -60,6 +61,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				url: "/assets/music/url/vienna.opus",
 				cover: "/assets/music/cover/vienna.webp",
 				lrc: "/assets/music/lrc/vienna.lrc",
+				duration: "3:34",
 			},
 			{
 				name: "Cradles",
@@ -67,6 +69,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				url: "/assets/music/url/cradles.opus",
 				cover: "/assets/music/cover/cradles.webp",
 				lrc: "/assets/music/lrc/cradles.lrc",
+				duration: "3:29",
 			},
 			{
 				name: "Defeat The Night",
@@ -74,6 +77,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				url: "/assets/music/url/defeat-the-night.opus",
 				cover: "/assets/music/cover/defeat-the-night.webp",
 				lrc: "/assets/music/lrc/defeat-the-night.lrc",
+				duration: "4:14",
 			},
 			{
 				name: "Royalty",
@@ -81,6 +85,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				url: "/assets/music/url/royalty.opus",
 				cover: "/assets/music/cover/royalty.webp",
 				lrc: "/assets/music/lrc/royalty.lrc",
+				duration: "3:43",
 			},
 			{
 				name: "akina",
@@ -88,6 +93,7 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 				url: "/assets/music/url/akina.opus",
 				cover: "/assets/music/cover/akina.webp",
 				lrc: "/assets/music/lrc/akina.lrc",
+				duration: "2:56",
 			},
 		],
 	},

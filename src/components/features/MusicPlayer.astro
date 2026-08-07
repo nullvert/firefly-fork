@@ -353,12 +353,23 @@ const widgetId =
         ui.cover.classList.add('animate-spin-slow');
         ui.cover.style.animationPlayState = 'paused';
 
-        // Reset progress
-        ui.progressBar.style.width = '0%';
-        ui.progressThumb.style.left = '0%';
-        ui.progressContainer.setAttribute('aria-valuenow', '0');
         ui.currentTime.innerText = '0:00';
-        ui.totalTime.innerText = '0:00';
+        if (track.duration) {
+            if (typeof track.duration === 'string' && track.duration.includes(':')) {
+                ui.totalTime.innerText = track.duration;
+            } else {
+                var num = typeof track.duration === 'number' ? track.duration : parseFloat(track.duration);
+                if (!isNaN(num) && isFinite(num) && num > 0) {
+                    var m = Math.floor(num / 60);
+                    var s = Math.floor(num % 60);
+                    ui.totalTime.innerText = m + ':' + (s < 10 ? '0' : '') + s;
+                } else {
+                    ui.totalTime.innerText = '0:00';
+                }
+            }
+        } else {
+            ui.totalTime.innerText = '0:00';
+        }
     }
 
     // ── Virtual scroll helpers (absolute-position based) ──────

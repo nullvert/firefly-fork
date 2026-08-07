@@ -24,6 +24,7 @@ const localPlaylist =
 							? song.lrc
 							: url(song.lrc)
 						: undefined,
+					duration: song.duration,
 				};
 			})
 		: [];
@@ -63,11 +64,27 @@ const managerConfigStr = JSON.stringify({
 
     var config = JSON.parse(managerConfigStr);
 
-    // ── Helpers ──────────────────────────────────────────────
+    function parseDurationInSeconds(dur) {
+        if (typeof dur === 'number') return (isNaN(dur) || !isFinite(dur)) ? 0 : dur;
+        if (typeof dur === 'string') {
+            if (dur.includes(':')) {
+                var parts = dur.split(':');
+                var m = parseFloat(parts[0]) || 0;
+                var s = parseFloat(parts[1]) || 0;
+                return m * 60 + s;
+            }
+            var num = parseFloat(dur);
+            return isNaN(num) ? 0 : num;
+        }
+        return 0;
+    }
+
     function formatTime(seconds) {
-        if (!seconds || isNaN(seconds) || !isFinite(seconds)) return '0:00';
-        var min = Math.floor(seconds / 60);
-        var sec = Math.floor(seconds % 60);
+        if (typeof seconds === 'string' && seconds.includes(':')) return seconds;
+        var num = typeof seconds === 'number' ? seconds : parseFloat(seconds);
+        if (isNaN(num) || !isFinite(num) || num <= 0) return '0:00';
+        var min = Math.floor(num / 60);
+        var sec = Math.floor(num % 60);
         return min + ':' + (sec < 10 ? '0' : '') + sec;
     }
 
@@ -98,7 +115,7 @@ const managerConfigStr = JSON.stringify({
     var audio = document.createElement('audio');
     audio.crossOrigin = 'anonymous';
     audio.style.display = 'none';
-    audio.preload = 'none'; // 阻止浏览器预加载和自动恢复播放
+    audio.preload = 'metadata'; // 预加载音频元数据（如时长）
     document.body.appendChild(audio);
     audio.pause(); // 确保不自动播放
 
@@ -262,6 +279,7 @@ const managerConfigStr = JSON.stringify({
         emit('fm:track', { index: index, track: track, autoPlay: !!autoPlay });
 
         tryPlayCurrentTrackUrl(autoPlay, ver);
+        emitTimeUpdate();
     }
 
     // ── Playback controls ────────────────────────────────────
@@ -332,13 +350,21 @@ const managerConfigStr = JSON.stringify({
     }
 
     function seek(percent) {
-        if (!audio.duration) return;
-        audio.currentTime = Math.max(0, Math.min(1, percent)) * audio.duration;
+        var track = state.playlist[state.currentIndex];
+        var dur = (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) 
+            ? audio.duration 
+            : (track && track.duration ? parseDurationInSeconds(track.duration) : 0);
+        if (!dur) return;
+        audio.currentTime = Math.max(0, Math.min(1, percent)) * dur;
     }
 
     function seekToTime(time) {
-        if (!audio.duration) return;
-        audio.currentTime = Math.max(0, Math.min(time, audio.duration));
+        var track = state.playlist[state.currentIndex];
+        var dur = (audio.duration && !isNaN(audio.duration) && isFinite(audio.duration)) 
+            ? audio.duration 
+            : (track && track.duration ? parseDurationInSeconds(track.duration) : 0);
+        if (!dur) return;
+        audio.currentTime = Math.max(0, Math.min(time, dur));
     }
 
     function playTrackByIndex(index) {
@@ -351,17 +377,23 @@ const managerConfigStr = JSON.stringify({
 
     // ── Audio events → broadcast ─────────────────────────────
     function emitTimeUpdate() {
-        if (!audio.duration || isNaN(audio.duration) || !isFinite(audio.duration)) return;
-        var ct = audio.currentTime;
+        var track = state.playlist[state.currentIndex];
         var dur = audio.duration;
-        var pct = (ct / dur) * 100;
+        var hasAudioDur = dur && !isNaN(dur) && isFinite(dur);
+        var presetDurSec = track && track.duration ? parseDurationInSeconds(track.duration) : 0;
+
+        if (!hasAudioDur && !presetDurSec) return;
+
+        var ct = audio.currentTime || 0;
+        var totalDur = hasAudioDur ? dur : presetDurSec;
+        var pct = (totalDur && isFinite(totalDur) && totalDur > 0) ? (ct / totalDur) * 100 : 0;
 
         emit('fm:time', {
             currentTime: ct,
-            duration: dur,
-            progress: pct,
+            duration: totalDur,
+            progress: Math.min(100, Math.max(0, pct)),
             currentTimeStr: formatTime(ct),
-            durationStr: formatTime(dur)
+            durationStr: formatTime(hasAudioDur ? dur : (track ? track.duration : 0))
         });
     }
 
