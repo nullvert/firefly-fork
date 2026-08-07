@@ -154,7 +154,10 @@ async function imageToPngBase64(
 
 	const sharp = await getSharp();
 	try {
-		const pngBuffer = await sharp(imageBuffer).png().toBuffer();
+		const pngBuffer = await sharp(imageBuffer)
+			.resize(256, 256, { fit: "inside", withoutEnlargement: true })
+			.png()
+			.toBuffer();
 		const result = `data:image/png;base64,${pngBuffer.toString("base64")}`;
 		convertedImageCache.set(sourcePath, result);
 		return result;

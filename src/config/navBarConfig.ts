@@ -15,23 +15,10 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 
 	// 主页
 	links.push(LinkPresets.Home);
-
-	// 文章及其子菜单
-	links.push({
-		name: "文章",
-		url: "#",
-		icon: "material-symbols:article",
-		children: [
-			// 归档
-			LinkPresets.Archive,
-
-			// 分类
-			LinkPresets.Categories,
-
-			// 标签
-			LinkPresets.Tags,
-		],
-	});
+	links.push(LinkPresets.Categories);
+	links.push(LinkPresets.Tags);
+	links.push(LinkPresets.Booknav);
+	links.push(LinkPresets.Archive);
 
 	//社交及其子菜单
 	links.push({
@@ -64,66 +51,21 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 
 			// 番组计划
 			LinkPresets.Bangumi,
-
-			// 书签导航
-			LinkPresets.Booknav,
 		],
 	});
 
 	// 关于及其子菜单
-	links.push({
-		name: "关于",
-		url: "#",
-		icon: "material-symbols:info",
-		children: [
-			// 打赏
-			LinkPresets.Sponsor,
-
-			// 关于页面
-			LinkPresets.About,
-		],
-	});
-
-	// 自定义导航栏链接
-	links.push({
-		name: "链接",
-		url: "#",
-		icon: "material-symbols:link",
-		// 子菜单
-		children: [
-			{
-				name: "GitHub",
-				url: "https://github.com/CuteLeaf/Firefly",
-				external: true,
-				icon: "fa7-brands:github",
-			},
-			{
-				name: "Gitee",
-				url: "https://gitee.com/CuteLeaf/Firefly",
-				external: true,
-				icon: "fa7-brands:gitee",
-			},
-			{
-				name: "QQ交流群",
-				url: "https://qm.qq.com/q/ZGsFa8qX2G",
-				external: true,
-				icon: "fa7-brands:qq",
-			},
-			{
-				name: "Firefly文档",
-				url: "https://docs-firefly.cuteleaf.cn",
-				external: true,
-				icon: "material-symbols:docs",
-			},
-		],
-	});
-
-	// 文档链接
 	// links.push({
-	// 	name: "文档",
-	// 	url: "https://docs-firefly.cuteleaf.cn",
-	// 	external: true,
-	// 	icon: "material-symbols:docs",
+	// 	name: "关于",
+	// 	url: "#",
+	// 	icon: "material-symbols:info",
+	// 	children: [
+	// 		// 打赏
+	// 		LinkPresets.Sponsor,
+	//
+	// 		// 关于页面
+	// 		LinkPresets.About,
+	// 	],
 	// });
 
 	return { links } as NavBarConfig;
@@ -140,7 +82,7 @@ export const navBarSearchConfig: NavBarSearchConfig = {
 // ============================================================================
 export const LinkPresets: Record<string, NavBarLink> = {
 	Home: {
-		name: "主页",
+		name: "Главная",
 		url: "/",
 		icon: "material-symbols:home",
 	},
@@ -151,19 +93,19 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		pageKey: "dynamic",
 	},
 	Archive: {
-		name: "归档",
+		name: "Архив",
 		url: "/archive/",
-		icon: "material-symbols:archive",
+		icon: "material-symbols:format-list-bulleted-rounded",
 	},
 	Categories: {
-		name: "分类",
+		name: "Категории",
 		url: "/categories/",
-		icon: "material-symbols:folder-open-rounded",
+		icon: "material-symbols:category-rounded",
 	},
 	Tags: {
-		name: "标签",
+		name: "Теги",
 		url: "/tags/",
-		icon: "material-symbols:tag-rounded",
+		icon: "mdi:tag",
 	},
 	Friends: {
 		name: "友链",
@@ -172,7 +114,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		pageKey: "friends",
 	},
 	Sponsor: {
-		name: "打赏",
+		name: "Поддержка",
 		url: "/sponsor/",
 		icon: "material-symbols:favorite",
 		pageKey: "sponsor",
@@ -184,7 +126,7 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		pageKey: "guestbook",
 	},
 	About: {
-		name: "关于我",
+		name: "Обо мне",
 		url: "/about/",
 		icon: "material-symbols:person",
 	},
@@ -195,21 +137,21 @@ export const LinkPresets: Record<string, NavBarLink> = {
 		pageKey: "bangumi",
 	},
 	Gallery: {
-		name: "相册",
+		name: "Галерея",
 		url: "/gallery/",
 		icon: "material-symbols:photo-library",
 		pageKey: "gallery",
 	},
 	Anime: {
-		name: "追番",
+		name: "Аниме",
 		url: "/anime/",
 		icon: "material-symbols:live-tv",
 		pageKey: "anime",
 	},
 	Booknav: {
-		name: "书签导航",
+		name: "Закладки",
 		url: "/booknav/",
-		icon: "material-symbols:bookmarks",
+		icon: "mdi:bookmark-multiple",
 		pageKey: "booknav",
 	},
 };

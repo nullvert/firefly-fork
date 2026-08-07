@@ -9,10 +9,10 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	showInSidebar: true,
 
 	// 使用方式："meting" 使用 Meting API，"local" 使用本地音乐列表
-	mode: "meting",
+	mode: "local",
 
 	// 默认音量 (0-1)
-	volume: 0.7,
+	volume: 0.3,
 
 	// 播放模式：'list'=列表循环, 'one'=单曲循环, 'random'=随机播放
 	playMode: "list",
@@ -48,11 +48,46 @@ export const musicPlayerConfig: MusicPlayerConfig = {
 	local: {
 		playlist: [
 			{
-				name: "使一颗心免于哀伤",
-				artist: "知更鸟 / HOYO-MiX / Chevy",
-				url: "/assets/music/使一颗心免于哀伤-哼唱.mp3",
-				cover: "/assets/music/cover/109951169585655912.webp",
-				lrc: "",
+				name: "Get Jinxed",
+				artist: "League of Legends",
+				url: "/assets/music/url/get-jinxed.opus",
+				cover: "/assets/music/cover/get-jinxed.webp",
+				lrc: "/assets/music/lrc/get-jinxed.lrc",
+			},
+			{
+				name: "Vienna",
+				artist: "James Mercy, PhiloSofie",
+				url: "/assets/music/url/vienna.opus",
+				cover: "/assets/music/cover/vienna.webp",
+				lrc: "/assets/music/lrc/vienna.lrc",
+			},
+			{
+				name: "Cradles",
+				artist: "Sub Urban",
+				url: "/assets/music/url/cradles.opus",
+				cover: "/assets/music/cover/cradles.webp",
+				lrc: "/assets/music/lrc/cradles.lrc",
+			},
+			{
+				name: "Defeat The Night",
+				artist: "JPB, Ashley Apollodor",
+				url: "/assets/music/url/defeat-the-night.opus",
+				cover: "/assets/music/cover/defeat-the-night.webp",
+				lrc: "/assets/music/lrc/defeat-the-night.lrc",
+			},
+			{
+				name: "Royalty",
+				artist: "Maestro Chives, Egzod, Neoni",
+				url: "/assets/music/url/royalty.opus",
+				cover: "/assets/music/cover/royalty.webp",
+				lrc: "/assets/music/lrc/royalty.lrc",
+			},
+			{
+				name: "akina",
+				artist: "Ai!low",
+				url: "/assets/music/url/akina.opus",
+				cover: "/assets/music/cover/akina.webp",
+				lrc: "/assets/music/lrc/akina.lrc",
 			},
 		],
 	},

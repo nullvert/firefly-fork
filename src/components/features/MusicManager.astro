@@ -65,7 +65,7 @@ const managerConfigStr = JSON.stringify({
 
     // ── Helpers ──────────────────────────────────────────────
     function formatTime(seconds) {
-        if (!seconds || isNaN(seconds)) return '0:00';
+        if (!seconds || isNaN(seconds) || !isFinite(seconds)) return '0:00';
         var min = Math.floor(seconds / 60);
         var sec = Math.floor(seconds % 60);
         return min + ':' + (sec < 10 ? '0' : '') + sec;
@@ -350,8 +350,8 @@ const managerConfigStr = JSON.stringify({
     }
 
     // ── Audio events → broadcast ─────────────────────────────
-    audio.addEventListener('timeupdate', function () {
-        if (isNaN(audio.duration)) return;
+    function emitTimeUpdate() {
+        if (!audio.duration || isNaN(audio.duration) || !isFinite(audio.duration)) return;
         var ct = audio.currentTime;
         var dur = audio.duration;
         var pct = (ct / dur) * 100;
@@ -363,8 +363,13 @@ const managerConfigStr = JSON.stringify({
             currentTimeStr: formatTime(ct),
             durationStr: formatTime(dur)
         });
+    }
+
+    audio.addEventListener('timeupdate', function () {
+        emitTimeUpdate();
 
         // Lyrics sync
+        var ct = audio.currentTime;
         if (state.lyrics.length > 0) {
             var idx = -1;
             for (var i = 0; i < state.lyrics.length; i++) {
@@ -377,6 +382,9 @@ const managerConfigStr = JSON.stringify({
             }
         }
     });
+
+    audio.addEventListener('durationchange', emitTimeUpdate);
+    audio.addEventListener('loadedmetadata', emitTimeUpdate);
 
     audio.addEventListener('ended', function () {
         playNext(true);
@@ -471,8 +479,8 @@ const managerConfigStr = JSON.stringify({
                 volume: state.volume,
                 isMuted: state.isMuted,
                 currentTime: audio.currentTime,
-                duration: audio.duration || 0,
-                progress: audio.duration ? (audio.currentTime / audio.duration) * 100 : 0,
+                duration: (audio.duration && isFinite(audio.duration)) ? audio.duration : 0,
+                progress: (audio.duration && isFinite(audio.duration)) ? (audio.currentTime / audio.duration) * 100 : 0,
                 currentTimeStr: formatTime(audio.currentTime),
                 durationStr: formatTime(audio.duration),
                 lyrics: state.lyrics,

@@ -28,7 +28,6 @@ if (footerConfig.enable) {
 }
 ---
 
-
 <div
   class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"
 >
@@ -44,6 +43,12 @@ if (footerConfig.enable) {
     <div class="m-0.5 flex gap-2 justify-center flex-wrap">
       &copy; <span id="copyright-year">{currentYear}</span>
       {profileConfig.name}. All Rights Reserved.
+      <span aria-hidden="true">/</span>
+      <a
+        class="transition link text-(--primary) font-medium"
+        target="_blank"
+        href={url("/credits-and-licenses/")}>Credits</a
+      >
       <span aria-hidden="true">/</span>
       <a
         class="transition link text-(--primary) font-medium"

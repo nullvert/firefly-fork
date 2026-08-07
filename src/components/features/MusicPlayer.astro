@@ -611,9 +611,13 @@ const widgetId =
             ui.progressBar.style.width = s.progress + '%';
             ui.progressThumb.style.left = s.progress + '%';
             ui.progressContainer.setAttribute('aria-valuenow', Math.round(s.progress).toString());
-            ui.currentTime.innerText = s.currentTimeStr;
-            ui.totalTime.innerText = s.durationStr;
+        } else {
+            ui.progressBar.style.width = '0%';
+            ui.progressThumb.style.left = '0%';
+            ui.progressContainer.setAttribute('aria-valuenow', '0');
         }
+        ui.currentTime.innerText = s.currentTimeStr || '0:00';
+        ui.totalTime.innerText = s.durationStr || '0:00';
 
         // Lyrics
         renderLyricsUI(s.lyrics, s.lyrics.length > 0 ? 'loaded' : 'none');
