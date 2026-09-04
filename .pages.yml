@@ -1,451 +1,64 @@
----
-title: "Шпаргалка по Markdown"
-published: 2026-08-08
-pinned: false
-description: "Пример оформления постов: форматирование текста, код, изображения, таблицы, математические формулы и диаграммы."
-tags: [Markdown]
-category: "Демо"
-licenseName: "CC BY-NC-SA 4.0"
-author: "Javohir"
-slug: "markdown-tutorial"
-image: "keyboard.webp"
----
-
-Шпаргалка по оформлению постов в блоге: форматирование текста, подсветка Expressive Code, формулы KaTeX, диаграммы Mermaid и PlantUML, карточки GitHub и сетки изображений.
-
-<!-- more -->
-
----
-
-## 1. Типографика и форматирование текста
-
-Тема поддерживает полный спектр типографических стилей для структурирования информации:
-
-# Заголовок первого уровня (H1)
-## Заголовок второго уровня (H2)
-### Заголовок третьего уровня (H3)
-#### Заголовок четвертого уровня (H4)
-##### Заголовок пятого уровня (H5)
-###### Заголовок шестого уровня (H6)
-
-### Стили начертания и акценты
-
-- **Полужирный текст** (`**bold**` или `__bold__`)
-- *Курсивный текст* (`*italic*` или `_italic_`)
-- ***Полужирный курсив*** (`***bold italic***`)
-- ~~Зачёркнутый текст~~ (`~~strikethrough~~`)
-- `Встроенный код` (``inline code``)
-- Выделение маркером: <mark>ключевая мысль или важный фрагмент</mark> (`<mark>текст</mark>`)
-- Горячие клавиши и сочетания клавиатуры: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> или <kbd>⌘</kbd> + <kbd>K</kbd>
-- Индексы и формулы: H<sub>2</sub>O (`H<sub>2</sub>O`), 2<sup>10</sup> = 1024 (`2<sup>10</sup>`)
-- Аббревиатуры с подсказкой: <abbr title="Application Programming Interface">API</abbr>, <abbr title="Static Site Generator">SSG</abbr>
-
-### Спойлеры
-
-Для сокрытия сюжетных поворотов, ответов на загадки или служебных деталей используется синтаксис директив `:spoiler[текст]`:
-
-- Результат матча: :spoiler[Команда победила в овертайме со счётом 3:2]!
-- Секретный пароль от архива: :spoiler[`firefly-2026-secure`]
-
----
-
-## 2. Цитаты и эпиграфы
-
-Стандартные цитаты Markdown поддерживают многострочный текст, указание авторства и вложенные уровни:
-
-> Программирование — это искусство говорить другому человеку, что именно должен сделать компьютер.
->
-> — *Дональд Кнут (Donald Knuth)*
-
-Вложенная цитата для диалогов или обсуждений:
-
-> Основное утверждение архитектуры микросервисов:
->
->> Делайте сервисы слабо связанными и обладающими высокой связностью (high cohesion, low coupling).
->> — *Мартин Фаулер*
->
-> Этот принцип позволяет масштабировать команды независимо.
-
----
-
-## 3. Списки и списки задач
-
-### Маркированные списки с вложенностью
-
-- **Системные технологии и языки**
-  - Rust 2024 Edition (Tokio, Axum)
-  - Go 1.24 (Goroutines, Channels)
-  - C++23 (Concepts, Ranges, Coroutines)
-- **Современный веб-стек**
-  - Astro 5 с архитектурой изолированных островков
-  - Svelte 5 с реактивностью на основе Runes (`$state`, `$derived`)
-  - Tailwind CSS v4 с нативным компилятором Oxide
-
-### Нумерованные списки этапов
-
-1. Клонировать репозиторий проекта на локальную рабочую станцию.
-2. Установить зависимости через пакетный менеджер `pnpm install`.
-3. Настроить конфигурационные файлы в каталоге `src/config/`.
-4. Запустить локальный сервер разработки командой `pnpm dev`.
-
-### Интерактивные чек-листы задач
-
-- [x] Настроить Astro 5 и интегрировать тему Firefly
-- [x] Подключить плагины подсветки кода Expressive Code
-- [x] Добавить математический движок KaTeX с поддержкой `mhchem`
-- [x] Реализовать генерацию статического поискового индекса Pagefind
-- [ ] Опубликовать первую аналитическую статью в блоге
-
----
-
-## 4. Блоки внимания и Callouts (Admonitions)
-
-Firefly использует плагин [rehype-callouts](https://github.com/lin-stephanie/rehype-callouts). Доступны стили пяти категорий с иконками и акцентными цветами:
-
-> [!NOTE]
-> **Информация:** Блог компилируется в чистый статический HTML и CSS, что обеспечивает мгновенную загрузку и максимальный балл в Google Lighthouse.
-
-> [!TIP]
-> **Совет:** Используйте горячую клавишу <kbd>/</kbd> или клик по значку лупы в шапке, чтобы открыть быстрый полнотекстовый поиск Pagefind.
-
-> [!IMPORTANT]
-> **Важно:** Все изображения внутри постов автоматически оптимизируются в современные форматы WebP/AVIF с генерацией LQIP-заглушек (низкополигональных превью).
-
-> [!WARNING]
-> **Предупреждение:** Перед сборкой убедитесь в отсутствии циклических импортов и предупреждений в типах TypeScript.
-
-> [!CAUTION]
-> **Опасность:** Никогда не храните приватные токены авторизации и пароли в публичных репозиториях GitHub!
-
-### Кастомные заголовки блоков внимания
-
-Вы можете задавать собственный текст заголовка для любого блока внимания:
-
-> [!TIP] Лайфхак для разработчиков
-> При редактировании Markdown-файлов в Astro сервер с Hot Module Replacement (HMR) обновляет страницу мгновенно без потери состояния прокрутки.
-
----
-
-## 5. Подсветка кода (Expressive Code)
-
-Блоки кода работают на движке **Expressive Code**. Поддерживаются имена файлов, иконки языков, подсветка строк, маркеры изменений и сворачивание фрагментов.
-
-### TypeScript: Клиент с повторными запросами (Retry Backoff)
-
-```typescript title="src/utils/fetchWithRetry.ts" {4-6} ins={14-16} del={11}
-interface RetryOptions {
-  maxRetries?: number;
-  backoffFactorMs?: number;
-  timeoutMs?: number;
-}
-
-export async function fetchWithRetry<T>(
-  endpoint: string,
-  options: RetryOptions = {},
-): Promise<T> {
-  const { maxRetries = 3, backoffFactorMs = 400 } = options;
-  // Старая реализация без обработки сбоев: const res = await fetch(endpoint);
-  for (let attempt = 1; attempt <= maxRetries; attempt++) {
-    try {
-      const response = await fetch(endpoint);
-      if (!response.ok) throw new Error(\`HTTP \${response.status}\`);
-      return (await response.json()) as T;
-    } catch (error) {
-      if (attempt === maxRetries) throw error;
-      await new Promise((resolve) =>
-        setTimeout(resolve, backoffFactorMs * 2 ** (attempt - 1)),
-      );
-    }
-  }
-  throw new Error("Недостижимая ветка retry-цикла");
-}
-```
-
-### Python: Свёрнутый блок обучения нейросети
-
-```python title="neural_net.py"
-import torch
-import torch.nn as nn
-
-class TransformerBlock(nn.Module):
-    def __init__(self, embed_dim: int, num_heads: int):
-        super().__init__()
-        self.attention = nn.MultiheadAttention(embed_dim, num_heads)
-        self.norm1 = nn.LayerNorm(embed_dim)
-        self.norm2 = nn.LayerNorm(embed_dim)
-        self.mlp = nn.Sequential(
-            nn.Linear(embed_dim, embed_dim * 4),
-            nn.GELU(),
-            nn.Linear(embed_dim * 4, embed_dim),
-        )
-
-    def forward(self, x):
-        attn_out, _ = self.attention(x, x, x)
-        x = self.norm1(x + attn_out)
-        return self.norm2(x + self.mlp(x))
-
-# [!code collapse:start]
-# Свёрнутая служебная инициализация оптимизатора и загрузчика данных
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model = TransformerBlock(embed_dim=256, num_heads=8).to(device)
-criterion = nn.CrossEntropyLoss()
-optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=1e-2)
-print(f"Модель инициализирована на устройстве: {device}")
-# [!code collapse:end]
-```
-
-### Терминальная сессия без нумерации строк
-
-```shellsession title="Консоль разработчика"
-$ pnpm install
-Packages: +42
-++++++++++++++++++++++++++++++++++++++++++
-Progress: resolved 42, reused 42, downloaded 0, added 42, done
-$ pnpm build
-✓ Completed in 7.42s.
-```
-
-### Группа вкладок с кодом (Code Groups)
-
-:::code-group
-```go [Go Worker Pool]
-package main
-
-import (
-	"context"
-	"fmt"
-	"sync"
-)
-
-func processTasks(ctx context.Context, tasks []int) <-chan int {
-	out := make(chan int)
-	var wg sync.WaitGroup
-
-	for _, task := range tasks {
-		wg.Add(1)
-		go func(t int) {
-			defer wg.Done()
-			select {
-			case <-ctx.Done():
-				return
-			case out <- t * t:
-			}
-		}(task)
-	}
-
-	go func() {
-		wg.Wait()
-		close(out)
-	}()
-	return out
-}
-```
-
-```rust [Rust Tokio Actor]
-use tokio::sync::mpsc;
-
-enum Command {
-    Increment { amount: u32 },
-    Get { responder: tokio::sync::oneshot::Sender<u32> },
-}
-
-async fn run_actor(mut rx: mpsc::Receiver<Command>) {
-    let mut state = 0u32;
-    while let Some(cmd) = rx.recv().await {
-        match cmd {
-            Command::Increment { amount } => state += amount,
-            Command::Get { responder } => {
-                let _ = responder.send(state);
-            }
-        }
-    }
-}
-```
-
-```sql [PostgreSQL Query]
-WITH ranked_posts AS (
-    SELECT 
-        p.id,
-        p.title,
-        p.category,
-        p.created_at,
-        COUNT(c.id) AS comments_count,
-        DENSE_RANK() OVER (PARTITION BY p.category ORDER BY COUNT(c.id) DESC) as rank
-    FROM posts p
-    LEFT JOIN comments c ON p.id = c.post_id
-    GROUP BY p.id
-)
-SELECT * FROM ranked_posts WHERE rank <= 3 ORDER BY category, rank;
-```
-:::
-
----
-
-## 6. Математика и формулы (KaTeX)
-
-Тема интегрирует математический движок KaTeX с поддержкой расширения для химических формул `mhchem`.
-
-### Уравнение Шрёдингера (квантовая механика)
-
-$$i\hbar \frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \left [ -\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r},t) \right ] \Psi(\mathbf{r},t)$$
-
-### Преобразование Фурье
-
-$$F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt$$
-
-### Теорема Байеса
-
-$$P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
-
-### Химические уравнения (`\ce{...}`)
-
-Термоядерная реакция синтеза дейтерия и трития:
-$$\ce{^2_1H + ^3_1H -> ^4_2He + ^1_0n + 17.6 MeV}$$
-
-Реакция нейтрализации:
-$$\ce{HCl + NaOH -> NaCl + H2O}$$
-
-Инлайн-математика также работает прямо в тексте: формула энергии $E = mc^2$, золотое сечение $\phi = \frac{1 + \sqrt{5}}{2} \approx 1.618$.
-
----
-
-## 7. Интерактивные диаграммы
-
-### Mermaid: Диаграмма последовательности с масштабированием
-
-Диаграммы поддерживают встроенные кнопки панорамирования и зума (Pan/Zoom):
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor User as Пользователь
-    participant Client as Браузер (Svelte 5)
-    participant Edge as CDN / Cloudflare
-    participant Server as Astro Static Core
-
-    User->>Client: Переход на страницу блога
-    Client->>Edge: HTTP GET /posts/markdown-tutorial/
-    Edge-->>Client: Сжатый HTML + CSS + WebP LQIP
-    Client->>Client: Гидратация интерактивных островов
-    Client->>Edge: Фоновая загрузка поискового индекса Pagefind
-    Note over Client,Edge: Полная интерактивность достигнута за < 100мс
-```
-
-### Mermaid: Git Graph ветвления репозитория
-
-```mermaid
-gitGraph
-    commit id: "init"
-    commit id: "v1.0" tag: "v1.0"
-    branch dev
-    checkout dev
-    commit id: "feat: add katex"
-    commit id: "feat: mdx support"
-    checkout main
-    merge dev id: "merge dev"
-    commit id: "release v2.0" tag: "v2.0"
-```
-
-### PlantUML: Архитектурные компоненты
-
-```plantuml
-@startuml
-skinparam componentStyle uml2
-skinparam roundcorner 8
-
-package "Firefly Engine" {
-  [Astro 5 Core] as Astro
-  [Content Collections] as Collections
-  [Expressive Code] as Code
-  [KaTeX & Mermaid] as MathDiagrams
-  [Pagefind Indexer] as Search
-}
-
-database "Markdown / MDX Posts" {
-  [Local Source Files] as Source
-}
-
-Source --> Collections
-Collections --> Astro
-Astro --> Code
-Astro --> MathDiagrams
-Astro --> Search
-@enduml
-```
-
----
-
-## 8. Виджеты репозиториев GitHub
-
-С помощью директивы `::github{repo="владелец/репозиторий"}` в запись встраиваются динамические карточки с актуальными звездами, форками и описанием:
-
-::github{repo="withastro/astro"}
-
-::github{repo="CuteLeaf/Firefly"}
-
-::github{repo="sveltejs/svelte"}
-
----
-
-## 9. Галерея и адаптивная сетка изображений
-
-### Одиночное изображение с автоматической фигурой
-
-![Рабочее пространство разработчика с монитором и мягкой подсветкой](https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80 "Атмосферный игровой сетап (Unsplash License)")
-
-### Адаптивная сетка изображений (`[grid]`)
-
-Теги `[grid]` и `[/grid]` позволяют организовать изображения в горизонтальный аккуратный коллаж с выровненными границами:
-
-[grid]
-![Абстрактные неоновые линии](https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80)
-![Экран с кодом программирования](https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80)
-![Игровая консоль и геймпад](https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80)
-[/grid]
-
----
-
-## 10. Таблицы характеристик
-
-| Категория | Технология | Описание | Лицензия |
-| :--- | :--- | :--- | :---: |
-| **Ядро блога** | Astro 5 | Генератор статических сайтов на архитектуре островов | MIT |
-| **Реактивность** | Svelte 5 | Быстрые интерактивные виджеты с рунами (`$state`) | MIT |
-| **Подсветка кода** | Expressive Code | Многовкладочные блоки, маркеры строк, заголовки | MIT |
-| **Поиск** | Pagefind | Локальный быстрый поиск без серверной базы данных | MIT |
-| **Формулы** | KaTeX + mhchem | Мгновенный рендеринг LaTeX математики и химии | MIT |
-| **Диаграммы** | Mermaid + PlantUML | Генерация графиков и диаграмм из текста с Pan/Zoom | MIT |
-
----
-
-## 11. Дополнительные возможности разметки
-
-### Сворачиваемый блок (`<details>`)
-
-<details>
-<summary><b>Нажмите, чтобы просмотреть скрытые технические параметры</b></summary>
-<br />
-
-Здесь могут располагаться вспомогательные листинги конфигураций, расширенные логи сборки или справочные данные, которые не должны перегружать основной текст статьи:
-
-- Среда сборки: Node.js v20+ / pnpm
-- Метод сжатия скриптов: `esbuild` с флагом minify
-- Время индексации Pagefind: < 0.1s
-</details>
-
-### Защита адресов электронной почты
-
-Адреса электронной почты в ссылках автоматически кодируются в Base64 плагином `rehype-email-protection`, защищая их от парсеров спам-ботов:
-
-- Связаться с автором: <a href="mailto:hello@example.com">hello@example.com</a>
-
-### Внутренние вики-ссылки (Obsidian WikiLinks)
-
-Поддерживается бесшовная навигация между материалами блога в стиле Obsidian: [[markdown-tutorial|Ссылка на данное руководство по Markdown]].
-
-### Сноски в тексте статьи
-
-Полноценная система сносок с двусторонними гиперссылками: Astro[^1] использует концепцию изолированных островов, а тема Firefly[^2] обеспечивает плавную навигацию через Swup.
-
-[^1]: Astro — современный веб-фреймворк, ориентированный на максимальную производительность доставки контента.
-[^2]: Firefly — элегантная тема для блога на базе Astro с адаптивным дизайном и богатым набором встроенных компонентов.
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/content/posts
+    format: md
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+
+      - name: slug
+        label: Slug
+        type: string
+
+      - name: published
+        label: Published Date
+        type: date
+        required: true
+
+      - name: description
+        label: Description
+        type: string
+
+      - name: category
+        label: Category
+        type: string
+
+      - name: tags
+        label: Tags
+        type: list
+
+      - name: image
+        label: Cover Image
+        type: image
+
+      - name: author
+        label: Author
+        type: string
+        default: "Javohir"
+
+      - name: licenseName
+        label: License
+        type: string
+        default: "CC BY-NC-SA 4.0"
+
+      - name: pinned
+        label: Pinned
+        type: boolean
+        default: false
+
+      - name: draft
+        label: Draft
+        type: boolean
+        default: false
+
+      - name: body
+        label: Body
+        type: rich-text
