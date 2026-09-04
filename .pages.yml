@@ -1,0 +1,45 @@
+media:
+  input: public/images
+  output: /images
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: src/content/posts
+    format: md
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+
+      - name: published
+        label: Publish Date
+        type: date
+        required: true
+
+      - name: description
+        label: Description
+        type: string
+
+      - name: image
+        label: Cover Image
+        type: image
+
+      - name: tags
+        label: Tags
+        type: list
+
+      - name: category
+        label: Category
+        type: string
+
+      - name: draft
+        label: Draft
+        type: boolean
+        default: false
+
+      - name: body
+        label: Content
+        type: rich-text
